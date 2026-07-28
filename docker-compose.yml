@@ -1,0 +1,34 @@
+services:
+  pai-openai-wrapper:
+    build: .
+    image: pai-openai-wrapper:latest
+    container_name: pai-openai-wrapper
+    restart: unless-stopped
+
+    # Single source of configuration. PORT lives here too, so changing it in .env
+    # moves the in-container bind AND the published port together.
+    env_file: .env
+
+    ports:
+      - "${PORT:-8000}:${PORT:-8000}"
+
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - |
+          import os, sys, urllib.request
+          port = os.environ.get("PORT", "8000")
+          sys.exit(0 if urllib.request.urlopen(
+              f"http://127.0.0.1:{port}/healthz", timeout=4).status == 200 else 1)
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

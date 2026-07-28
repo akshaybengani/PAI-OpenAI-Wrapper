@@ -1,0 +1,9 @@
+{"type": "phase", "phase": "mcp_connect", "detail": "0 server(s)"}
+{"type": "phase", "phase": "agent_run"}
+{"type": "phase", "phase": "llm", "detail": "gemma4:26b"}
+{"type": "text", "content": "Red"}
+{"type": "text", "content": "Red\n"}
+{"type": "text", "content": "Red\nBlue"}
+{"type": "text", "content": "Red\nBlue\n"}
+{"type": "text", "content": "Red\nBlue\nYellow"}
+{"type": "done", "tools_used": [], "duration": 2605, "tokens": {"prompt": 803, "completion": 6, "thinking": 0, "cached": 0, "tool": 0, "total": 809}, "model": "gemma4:26b", "citations": []}
